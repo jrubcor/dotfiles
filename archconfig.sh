@@ -21,10 +21,16 @@ install_pacman_packages rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg
 
 # Set up dotfiles
 git clone https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
-cp -r "$TEMP_DIR/dotfiles/qtile/"* "$HOME/.config/qtile/"
-cp -r  "$TEMP_DIR/dotfiles/rofi/"* "$HOME/.config/rofi/"
-cp -r  "$TEMP_DIR/dotfiles/kitty/"* "$HOME/.config/kitty/"
-cp -r  "$TEMP_DIR/dotfiles/nvim/"* "$HOME/.config/nvim/"
+rm -r "$HOME/.config/qtile/"
+rm -r "$HOME/.config/rofi/"
+rm -r "$HOME/.config/kitty/"
+rm -r "$HOME/.config/nvim/"
+
+cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
+cp -r  "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
+cp -r  "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
+cp -r  "$TEMP_DIR/dotfiles/.config/nvim/"* "$HOME/.config/nvim/"
+cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
 
 # Clean up temporary directory
 rm -rf "$TEMP_DIR"
