@@ -48,12 +48,10 @@ git clone https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
 rm -r "$HOME/.config/qtile/"
 rm -r "$HOME/.config/rofi/"
 rm -r "$HOME/.config/kitty/"
-rm -r "$HOME/.config/nvim/"
 
 mkdir "$HOME/.config/qtile/"
 mkdir "$HOME/.config/rofi/"
 mkdir "$HOME/.config/kitty/"
-mkdir "$HOME/.config/nvim/"
 
 cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
 cp -r "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
@@ -66,6 +64,8 @@ read -p "Do you want to download and install AstroNvim? (y/n): " user_choice
 
 case "$user_choice" in
     y|Y|yes|YES)
+        rm -r "$HOME/.config/nvim/"
+        mkdir "$HOME/.config/nvim/"
         echo "Installing AstroNvim..."
         # Clone the AstroNvim template repository
         git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim || {
