@@ -113,6 +113,10 @@ else
     echo "Catppuccin-Mocha already exists"
 fi
 
+sudo cp "$TEMP_DIR/dotfiles/usr/share/pixmaps/space.png" "/usr/share/pixmaps/"
+sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm.conf" "/etc/lightdm/"
+sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm-gtk-greeter.conf" "/etc/lightdm/"
+
 # Clean up temporary directory
 rm -rf "$TEMP_DIR"
 
