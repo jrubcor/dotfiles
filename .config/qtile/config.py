@@ -147,7 +147,7 @@ for i in groups:
     )
 
 # Theme Dracula
-color = myColors.Tokyo
+color = myColors.Catppuccin
 
 layout_theme= {"border_width": 1,
                 "margin": 3,
@@ -187,7 +187,7 @@ screens = [
             [
             widget.GroupBox(
                 font='JetBrainsMono NerdNL Font Mono',
-                fontsize=19,
+                fontsize=16,
                 margin_y=3,
                 margin_x=0,
                 padding_y=8,
@@ -205,32 +205,31 @@ screens = [
                 other_screen_border=color['dark'],
                 disable_drag=True
             ),
-                widget.WindowName(foreground=color["pink"]),
+                widget.WindowName(
+                    font='JetBrainsMono NerdNL Font Mono',
+                    fontsize=14,
+                    foreground=color["pink"]),
                 widget.CurrentLayout(
-                    active=color["blue"],
-                    inactive=color["bright_black"],
-                    highlight_method='line',
-                    this_current_screen_border=color["blue"],
-                    this_screen_border=color["bright_blue"],
-                    other_current_screen_border=color["magenta"],
-                    other_screen_border=color["bright_magenta"],
-                    urgent_border=color["dark"]
+                    font='JetBrainsMono NerdNL Font Mono',
+                    fontsize=14,
+                    background=color["blue"],
+                    foreground=color["dark"]
                 ),
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(
-                    background=color["cyan"],
+                    background=color["blue"],
                     foreground=color["dark"]
                 ),
                 widget.Clock(
                     format="%Y-%m-%d %a %I:%M %p", 
-                    background=color["cyan"],
+                    background=color["grey"],
                     foreground=color["dark"]
                 ),
                 widget.QuickExit(
-                    background=color["green"],
+                    background=color["red"],
                     foreground=color["dark"]
                 ),
             ],
