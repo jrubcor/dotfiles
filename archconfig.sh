@@ -18,7 +18,6 @@ install_pacman_packages() {
 # Install required packages
 install_pacman_packages alsa-utils discord firefox git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
 install_pacman_packages rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
-sudo pacman -S pulseaudio pavucontrol
 
 # Set up dotfiles
 git clone https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
@@ -46,3 +45,5 @@ echo "User Email: $(git config --global user.email)"
 # [D-BUS Service]
 # Name=org.freedesktop.Notifications
 # Exec=/usr/lib/notification-daemon-1.0/notification-daemon
+#
+# Para cambiar lightdm basta con agregar el tema gtk /ush/share/themes y luego en /etc/lightdm/lightdm-gtk... buscar theme y poner el nombre del tema a poner, ojo tienes que descompentar también [greeter]

@@ -149,7 +149,7 @@ for i in groups:
 # Theme Dracula
 color = myColors.Catppuccin
 
-layout_theme= {"border_width": 1,
+layout_theme= {"border_width": 2,
                 "margin": 3,
                 "border_focus": color["pink"],
                 "border_normal": color["grey"]
