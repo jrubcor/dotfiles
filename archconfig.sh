@@ -56,13 +56,64 @@ mkdir "$HOME/.config/kitty/"
 mkdir "$HOME/.config/nvim/"
 
 cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
-cp -r  "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
-cp -r  "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
-cp -r  "$TEMP_DIR/dotfiles/.config/nvim/"* "$HOME/.config/nvim/"
+cp -r "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
+cp -r "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
+cp -r "$TEMP_DIR/dotfiles/.config/gtk-3.0/"* "$HOME/.config/gtk-3.0/"
 cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
+
+# Prompt the user
+read -p "Do you want to download and install AstroNvim? (y/n): " user_choice
+
+case "$user_choice" in
+    y|Y|yes|YES)
+        echo "Installing AstroNvim..."
+        # Clone the AstroNvim template repository
+        git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim || {
+            echo "Failed to clone AstroNvim template repository.";
+            exit 1;
+        }
+
+        # Remove the template's Git connection
+        rm -rf ~/.config/nvim/.git || {
+            echo "Failed to remove Git history from AstroNvim template.";
+            exit 1;
+        }
+
+        # Copy user dotfiles into AstroNvim's configuration directory
+        if [ -d "$TEMP_DIR/dotfiles/.config/nvim/" ]; then
+            cp -r "$TEMP_DIR/dotfiles/.config/nvim/"* "$HOME/.config/nvim/" || {
+                echo "Failed to copy dotfiles into AstroNvim configuration.";
+                exit 1;
+            }
+        else
+            echo "Dotfiles directory not found: $TEMP_DIR/dotfiles/.config/nvim/";
+        fi
+        echo "AstroNvim has been successfully installed and configured."
+        ;;
+    n|N|no|NO)
+        echo "Okay bro..."
+        ;;
+    *)
+        echo "Invalid input. Please enter 'y' or 'n'."
+        ;;
+esac
+
+if [ ! -d /usr/share/themes/Catppuccin-Dark/ ]; then
+    (cd "$TEMP_DIR/dotfiles/themes/" && unzip "$TEMP_DIR/dotfiles/themes/Catppuccin-Dark-BL-MB.zip")
+    sudo cp -r "$TEMP_DIR/dotfiles/themes/Catppuccin-Dark" "/usr/share/themes/"
+else
+    echo "Catppuccin-Dark already exists"
+fi
+""""
 
 # Clean up temporary directory
 rm -rf "$TEMP_DIR"
+
+# Git config
+echo "Write your git user name: "
+read -r name
+echo "Write your git user email: "
+read -r email
 
 # Configure git
 git config --global user.name "$name"
