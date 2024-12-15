@@ -17,7 +17,7 @@ install_pacman_packages() {
 
 # Install required packages
 install_pacman_packages alsa-utils discord firefox git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
-install_pacman_packages rofi tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
+install_pacman_packages rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
 sudo pacman -S pulseaudio pavucontrol
 
 # Set up dotfiles
