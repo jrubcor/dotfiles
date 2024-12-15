@@ -117,6 +117,32 @@ sudo cp "$TEMP_DIR/dotfiles/usr/share/pixmaps/space.png" "/usr/share/pixmaps/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm.conf" "/etc/lightdm/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm-gtk-greeter.conf" "/etc/lightdm/"
 
+# GRUB
+(cd "$TEMP_DIR" && git clone https://github.com/catppuccin/grub.git)
+(cd "$TEMP_DIR" && cd grub && sudo cp -r src/* /usr/share/grub/themes/)
+
+THEME_PATH="/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"
+GRUB_CONFIG="/etc/default/grub"
+
+# Check if the theme file exists
+if [ ! -f "$THEME_PATH" ]; then
+    echo "Error: Theme file not found at $THEME_PATH"
+    exit 1
+fi
+
+# Update or add the GRUB_THEME line in the GRUB config
+if grep -q "^GRUB_THEME=" "$GRUB_CONFIG"; then
+    sudo sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$GRUB_CONFIG"
+else
+    echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$GRUB_CONFIG"
+fi
+
+# Update GRUB
+echo "Updating GRUB configuration..."
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "GRUB theme set to Catppuccin ${FLAVOR}!"
+
 # Clean up temporary directory
 rm -rf "$TEMP_DIR"
 
