@@ -1,7 +1,16 @@
 #!/bin/bash
 
 # Vars
-TEMP_DIR=$(mktemp -d)
+TEMP_DIR=$(mktemp -d) || { echo "Failed to create temp directory"; exit 1; }
+
+# Install yay
+if ! pacman -Q "yay"; then
+    git clone https://aur.archlinux.org/yay-git.git "$TEMP_DIR/yay-git/" || { echo "Failed to clone repo"; exit 1; }
+    cd "$TEMP_DIR/yay-git/" || { echo "Failed to enter directory"; exit 1; }
+    makepkg -si || { echo "Build and install failed"; exit 1; }
+else
+    echo "yay is already installed"
+fi
 
 # Function to install pacman packages
 install_pacman_packages() {
@@ -15,9 +24,24 @@ install_pacman_packages() {
     done
 }
 
+# Function to install pacman packages
+install_yay_packages() {
+    for package in "$@"; do
+        if ! yay -Q "$package" &>/dev/null; then
+            echo "Installing $package..."
+            yay -S --noconfirm "$package"
+        else
+            echo "$package is already installed"
+        fi
+    done
+}
+
 # Install required packages
 install_pacman_packages alsa-utils discord firefox git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
 install_pacman_packages rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
+
+install_yay_packages spotify
+
 
 # Set up dotfiles
 git clone https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
@@ -25,6 +49,11 @@ rm -r "$HOME/.config/qtile/"
 rm -r "$HOME/.config/rofi/"
 rm -r "$HOME/.config/kitty/"
 rm -r "$HOME/.config/nvim/"
+
+mkdir "$HOME/.config/qtile/"
+mkdir "$HOME/.config/rofi/"
+mkdir "$HOME/.config/kitty/"
+mkdir "$HOME/.config/nvim/"
 
 cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
 cp -r  "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
