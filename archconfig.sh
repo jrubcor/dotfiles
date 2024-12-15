@@ -55,6 +55,7 @@ mkdir "$HOME/.config/kitty/"
 
 cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
 cp -r "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
+cp -r "$TEMP_DIR/dotfiles/.local/share/rofi/themes/" "$HOME/.local/share/rofi/"
 cp -r "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
 cp -r "$TEMP_DIR/dotfiles/.config/gtk-3.0/"* "$HOME/.config/gtk-3.0/"
 cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
