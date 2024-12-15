@@ -38,7 +38,7 @@ install_yay_packages() {
 
 # Install required packages
 install_pacman_packages alsa-utils discord firefox git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
-install_pacman_packages rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
+install_pacman_packages python-psutil rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
 
 install_yay_packages spotify
 
@@ -105,7 +105,13 @@ if [ ! -d /usr/share/themes/Catppuccin-Dark/ ]; then
 else
     echo "Catppuccin-Dark already exists"
 fi
-""""
+
+if [ ! -d /usr/share/icons/Catppuccin-Mocha/ ]; then
+    (cd "$TEMP_DIR/dotfiles/themes/" && unzip "$TEMP_DIR/dotfiles/themes/Catppuccin-Mocha.zip")
+    sudo cp -r "$TEMP_DIR/dotfiles/themes/Catppuccin-Mocha" "/usr/share/icons/"
+else
+    echo "Catppuccin-Mocha already exists"
+fi
 
 # Clean up temporary directory
 rm -rf "$TEMP_DIR"
