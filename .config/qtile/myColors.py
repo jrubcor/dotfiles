@@ -1,28 +1,3 @@
-Theme = {
-    "background": "#1a1b26",
-    "foreground": "#a9b1d6",
-    "dark": ["#0f101a", "#0f101a"],
-    "light": ["#f1ffff", "#f1ffff"],
-    "grey": ["#353c4a", "#353c4a"],
-    "red": "#f7768e",
-    "green": "#9ece6a",
-    "yellow": "#e0af68",
-    "blue": "#7aa2f7",
-    "magenta": "#bb9af7",
-    "cyan": "#7dcfff",
-    "white": "#a9b1d6",
-    "pink": "#ff79c6",
-    "bright_black": "#414868",
-    "bright_red": "#f7768e",
-    "bright_green": "#9ece6a",
-    "bright_yellow": "#e0af68",
-    "bright_blue": "#7aa2f7",
-    "bright_magenta": "#bb9af7",
-    "bright_cyan": "#7dcfff",
-    "bright_white": "#c0caf5",
-    "text": ["#0f101a", "#0f101a"]
-}
-
 Catppuccin = {
     "background": "#1E1E2E",  # Catppuccin Mocha background (slightly darker than Tokyo's)
     "foreground": "#D9E0EE",  # Catppuccin Mocha text color
@@ -46,4 +21,29 @@ Catppuccin = {
     "bright_cyan": "#94E2D5",  # Bright cyan from Catppuccin Mocha
     "bright_white": "#D9E0EE",  # Bright white (similar to foreground)
     "text": ["#D9E0EE", "#D9E0EE"]  # Text color (matching Catppuccin Mocha text)
+}
+
+TokyoNight = {
+    "background": "#1A1B26",  # Tokyo Night background
+    "foreground": "#C0CAF5",  # Tokyo Night text color
+    "dark": ["#15161E", "#1A1B26"],  # Darker shades of the theme
+    "light": ["#A9B1D6", "#C0CAF5"],  # Light shades for contrast
+    "grey": ["#414868", "#565F89"],  # Greys from Tokyo Night
+    "red": "#F7768E",  # Red from Tokyo Night
+    "green": "#9ECE6A",  # Green from Tokyo Night
+    "yellow": "#E0AF68",  # Yellow from Tokyo Night
+    "blue": "#7AA2F7",  # Blue from Tokyo Night
+    "magenta": "#BB9AF7",  # Magenta from Tokyo Night
+    "cyan": "#7DCFFF",  # Cyan from Tokyo Night
+    "white": "#C0CAF5",  # White, same as foreground
+    "pink": "#FF9E64",  # Pink-like accent in Tokyo Night
+    "bright_black": "#3B4261",  # Bright black (neutral dark shade)
+    "bright_red": "#FF7A93",  # Bright red accent
+    "bright_green": "#B9F27C",  # Bright green accent
+    "bright_yellow": "#FF9E64",  # Bright yellow
+    "bright_blue": "#7AA2F7",  # Same as the main blue
+    "bright_magenta": "#BB9AF7",  # Same as the main magenta
+    "bright_cyan": "#7DCFFF",  # Same as the main cyan
+    "bright_white": "#C0CAF5",  # Same as the foreground
+    "text": ["#A9B1D6", "#C0CAF5"]  # Text colors for primary and secondary content
 }

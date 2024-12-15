@@ -103,7 +103,9 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),   # Sound
     # Screenshot
-    Key([mod], "s", lazy.spawn("scrot '%Y-%m-%d-%T_$wx$h.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots/'"))
+    Key([mod], "s", lazy.spawn("scrot '%Y-%m-%d-%T_$wx$h.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots/'")),
+    Key([mod], "b", lazy.spawn("firefox")),
+    Key([mod], "e", lazy.spawn("kitty yazi"))
 ]
 
 # Add key bindings to switch VTs in Wayland.
