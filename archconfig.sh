@@ -37,29 +37,70 @@ install_yay_packages() {
 }
 
 # Install required packages
-install_pacman_packages alsa-utils discord firefox git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
+install_pacman_packages alsa-utils discord git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
 install_pacman_packages python-psutil rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
 
-install_yay_packages spotify
+install_yay_packages spotify brave-bin
 
 
 # Set up dotfiles
 git clone --depth 1 https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
-rm -r "$HOME/.config/qtile/"
-rm -r "$HOME/.config/rofi/"
-rm -r "$HOME/.config/kitty/"
 
-mkdir "$HOME/.config/qtile/"
-mkdir "$HOME/.config/rofi/"
-mkdir "$HOME/.config/kitty/"
+# Prompt the user
+read -p "Do you wwant to remove your old directories? (Better for a clean installation) (y/n)" user_choice
+case "$user_choice" in
+    y|Y|yes|YES)
+        rm -r "$HOME/.config/qtile/"
+        rm -r "$HOME/.config/rofi/"
+        rm -r "$HOME/.config/kitty/"
+        ;;
+    n|N|no|NO)
+        echo "Directories weren't removed"
+        ;;
+    *)
+        echo "Invalid input. Please enter 'y' or 'n'."
+        ;;
+esac
 
+if [ ! -d "$HOME/.config/qtile/" ]; then
+    mkdir "$HOME/.config/qtile/"
+else
+    echo "~/.config/qtile directory already exists"
+fi
+
+if [ ! -d "$HOME/.config/kitty/" ]; then
+    mkdir "$HOME/.config/kitty/"
+else
+    echo "~/.config/kitty's directory already exists"
+fi
+
+if [ ! -d "$HOME/.config/rofi/" ]; then
+    mkdir "$HOME/.config/rofi/"
+else
+    echo "~/.config/rofi directory already exists"
+fi
+
+if [ ! -d "$HOME/.local/share/rofi/themes" ]; then
+    mkdir "$HOME/.local/share/rofi/themes"
+else
+    echo "~/.local/share/rofi/themes's directory already exists"
+fi
 cp -r "$TEMP_DIR/dotfiles/.config/qtile/"* "$HOME/.config/qtile/"
 cp -r "$TEMP_DIR/dotfiles/.config/rofi/"* "$HOME/.config/rofi/"
-cp -r "$TEMP_DIR/dotfiles/.local/share/rofi/themes/" "$HOME/.local/share/rofi/"
+cp -r "$TEMP_DIR/dotfiles/.local/share/rofi/themes/"* "$HOME/.local/share/rofi/themes/"
 cp -r "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
 cp -r "$TEMP_DIR/dotfiles/.config/gtk-3.0/"* "$HOME/.config/gtk-3.0/"
-cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
-cp "$TEMP_DIR/dotfiles/.xprofile" "$HOME"
+
+read -p "Do you want to replace .bashrc and .xprofile with the new config? (y/n): " user_choice
+case "$user_choice" in
+    y|Y|yes|YES)
+        cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
+        cp "$TEMP_DIR/dotfiles/.xprofile" "$HOME"
+        ;;
+    n|N|no|NO)
+        echo "Not replacing..."
+        ;;
+esac 
 
 # Prompt the user
 read -p "Do you want to download and install AstroNvim? (y/n): " user_choice
@@ -93,7 +134,7 @@ case "$user_choice" in
         echo "AstroNvim has been successfully installed and configured."
         ;;
     n|N|no|NO)
-        echo "Okay bro..."
+        echo "Not installing/reinstalling Astronvim..."
         ;;
     *)
         echo "Invalid input. Please enter 'y' or 'n'."
@@ -121,6 +162,7 @@ else
     echo "Reversal-blue-dark already exists"
 fi
 
+''''''''''''''''''''''''''''''''''''
 sudo cp "$TEMP_DIR/dotfiles/usr/share/pixmaps/"* "/usr/share/pixmaps/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm.conf" "/etc/lightdm/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm-gtk-greeter.conf" "/etc/lightdm/"
@@ -136,6 +178,11 @@ GRUB_CONFIG="/etc/default/grub"
 # Check if the theme file exists
 if [ ! -f "$THEME_PATH" ]; then
     echo "Error: Theme file not found at $THEME_PATH"
+    exit 1
+fi
+
+if [ ! -f "$BACKGROUND_PATH" ]; then
+    echo "Error: Background file not found at $BACKGROUND_PATH"
     exit 1
 fi
 
