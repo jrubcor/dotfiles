@@ -100,8 +100,8 @@ keys = [
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),   # Sound
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 set Master 1- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 set Master 1+ unmute")),   # Sound
     # Screenshot
     Key([mod], "s", lazy.spawn("scrot '%Y-%m-%d-%T_$wx$h.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots/'")),
     Key([mod], "b", lazy.spawn("firefox")),
@@ -214,7 +214,7 @@ screens = [
                 widget.CurrentLayout(
                     font='JetBrainsMono NerdNL Font Mono',
                     fontsize=14,
-                    background=color["green"],
+                    background=color["light"],
                     foreground=color["foreground"]
                 ),
                 #widget.TextBox("default config", name="default"),
@@ -222,7 +222,7 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(
-                    background=color["blue"],
+                    background=color["green"],
                     foreground=color["foreground"]
                 ),
                 widget.Clock(
