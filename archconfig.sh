@@ -130,6 +130,7 @@ sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm-gtk-greeter.conf" "/etc/lightdm/
 (cd "$TEMP_DIR" && cd grub && sudo cp -r src/* /usr/share/grub/themes/)
 
 THEME_PATH="/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"
+BACKGROUND_PATH="/usr/share/pixmaps/land.png"
 GRUB_CONFIG="/etc/default/grub"
 
 # Check if the theme file exists
@@ -139,10 +140,17 @@ if [ ! -f "$THEME_PATH" ]; then
 fi
 
 # Update or add the GRUB_THEME line in the GRUB config
-if grep -q "^GRUB_THEME=" "$GRUB_CONFIG"; then
+if grep -q "^#\? *GRUB_THEME=" "$GRUB_CONFIG"; then
     sudo sed -i "s|^GRUB_THEME=.*|GRUB_THEME=\"$THEME_PATH\"|" "$GRUB_CONFIG"
 else
     echo "GRUB_THEME=\"$THEME_PATH\"" | sudo tee -a "$GRUB_CONFIG"
+fi
+
+# Update or add the GRUB_BACKGROUND line in the GRUB config
+if grep -q "^#\? *BACKGROUND=" "$GRUB_CONFIG"; then
+    sudo sed -i "s|^#\? *GRUB_BACKGROUND=.*|GRUB_BACKGROUND=\"$BACKGROUND_PATH\"|" "$GRUB_CONFIG"
+else
+    echo "GRUB_BACKGROUND=\"$BACKGROUND_PATH\"" | sudo tee -a "$GRUB_CONFIG"
 fi
 
 # Update GRUB
