@@ -149,11 +149,11 @@ for i in groups:
     )
 
 # Theme Dracula
-color = myColors.Catppuccin
+color = myColors.Vivid
 
 layout_theme= {"border_width": 2,
-                "margin": 3,
-                "border_focus": color["pink"],
+                "margin": 0,
+                "border_focus": color["green"],
                 "border_normal": color["grey"]
                 }
 layouts = [
@@ -183,7 +183,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         wallpaper=os.path.join(os.path.expanduser("~"),
-                               ".config/qtile/space.png"),
+                               ".config/qtile/land.png"),
         wallpaper_mode="fill",
         top=bar.Bar(
             [
@@ -195,13 +195,13 @@ screens = [
                 padding_y=8,
                 padding_x=5,
                 borderwidth=1,
-                active=color['light'],
-                inactive=color['grey'],
+                active=color['green'],
+                inactive=color['green'],
                 rounded=False,
-                highlight_method='block',
+                highlight_method='line',
                 urgent_alert_method='block',
-                urgent_border=color['red'],
-                this_current_screen_border=color['pink'],
+                urgent_border=color['blue'],
+                this_current_screen_border=color['red'],
                 this_screen_border=color['grey'],
                 other_current_screen_border=color['dark'],
                 other_screen_border=color['dark'],
@@ -210,33 +210,33 @@ screens = [
                 widget.WindowName(
                     font='JetBrainsMono NerdNL Font Mono',
                     fontsize=14,
-                    foreground=color["pink"]),
+                    foreground=color["red"]),
                 widget.CurrentLayout(
                     font='JetBrainsMono NerdNL Font Mono',
                     fontsize=14,
-                    background=color["grey"],
-                    foreground=color["dark"]
+                    background=color["green"],
+                    foreground=color["foreground"]
                 ),
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(
-                    background=color["grey"],
-                    foreground=color["dark"]
+                    background=color["blue"],
+                    foreground=color["foreground"]
                 ),
                 widget.Clock(
                     format="%Y/%m/%d %a %I:%M %p", 
                     font="JetBrainsMono NerdNL Font Mono",
                     fontsize=14,
                     background=color["blue"],
-                    foreground=color["dark"]
+                    foreground=color["foreground"]
                 ),
                 widget.QuickExit(
                     font="JetBrainsMono NerdNL Font Mono",
                     fontsize=14,
                     background=color["red"],
-                    foreground=color["dark"]
+                    foreground=color["foreground"]
                 ),
             ],
             27,
