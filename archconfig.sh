@@ -44,7 +44,7 @@ install_yay_packages spotify
 
 
 # Set up dotfiles
-git clone https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
+git clone --depth 1 https://github.com/jrubcor/dotfiles "$TEMP_DIR/dotfiles"
 rm -r "$HOME/.config/qtile/"
 rm -r "$HOME/.config/rofi/"
 rm -r "$HOME/.config/kitty/"
