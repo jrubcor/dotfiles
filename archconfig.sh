@@ -59,6 +59,7 @@ cp -r "$TEMP_DIR/dotfiles/.local/share/rofi/themes/" "$HOME/.local/share/rofi/"
 cp -r "$TEMP_DIR/dotfiles/.config/kitty/"* "$HOME/.config/kitty/"
 cp -r "$TEMP_DIR/dotfiles/.config/gtk-3.0/"* "$HOME/.config/gtk-3.0/"
 cp "$TEMP_DIR/dotfiles/.bashrc" "$HOME"
+cp "$TEMP_DIR/dotfiles/.xprofile" "$HOME"
 
 # Prompt the user
 read -p "Do you want to download and install AstroNvim? (y/n): " user_choice
@@ -99,21 +100,28 @@ case "$user_choice" in
         ;;
 esac
 
-if [ ! -d /usr/share/themes/Catppuccin-Dark/ ]; then
-    (cd "$TEMP_DIR/dotfiles/themes/" && unzip "$TEMP_DIR/dotfiles/themes/Catppuccin-Dark-BL-MB.zip")
-    sudo cp -r "$TEMP_DIR/dotfiles/themes/Catppuccin-Dark" "/usr/share/themes/"
+if [ ! -d /usr/share/themes/Tokyonight-Dark/ ]; then
+    (cd "$TEMP_DIR/dotfiles/usr/share/themes/" && unzip "$TEMP_DIR/dotfiles/usr/share/themes/Tokyonight-Dark-BL-MB.zip")
+    sudo cp -r "$TEMP_DIR/dotfiles/usr/share/themes/Tokyonight-Dark" "/usr/share/themes/"
 else
-    echo "Catppuccin-Dark already exists"
+    echo "Tokyonight already exists"
 fi
 
-if [ ! -d /usr/share/icons/Catppuccin-Mocha/ ]; then
-    (cd "$TEMP_DIR/dotfiles/themes/" && unzip "$TEMP_DIR/dotfiles/themes/Catppuccin-Mocha.zip")
-    sudo cp -r "$TEMP_DIR/dotfiles/themes/Catppuccin-Mocha" "/usr/share/icons/"
+if [ ! -d /usr/share/themes/Tokyonight-Light/ ]; then
+    (cd "$TEMP_DIR/dotfiles/usr/share/themes/" && unzip "$TEMP_DIR/dotfiles/usr/share/themes/Tokyonight-Light-BL-MB.zip")
+    sudo cp -r "$TEMP_DIR/dotfiles/usr/share/themes/Tokyonight-Light" "/usr/share/themes/"
 else
-    echo "Catppuccin-Mocha already exists"
+    echo "Tokyonight already exists"
 fi
 
-sudo cp "$TEMP_DIR/dotfiles/usr/share/pixmaps/space.png" "/usr/share/pixmaps/"
+if [ ! -d /usr/share/icons/Reversal-blue-dark/ ]; then
+    (cd "$TEMP_DIR/dotfiles/usr/share/icons/" && tar -xvf "$TEMP_DIR/dotfiles/usr/share/icons/Reversal-blue.tar.xz")
+    sudo cp -r "$TEMP_DIR/dotfiles/usr/share/icons/Reversal-blue-dark" "/usr/share/icons/"
+else
+    echo "Reversal-blue-dark already exists"
+fi
+
+sudo cp "$TEMP_DIR/dotfiles/usr/share/pixmaps/"* "/usr/share/pixmaps/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm.conf" "/etc/lightdm/"
 sudo cp "$TEMP_DIR/dotfiles/etc/lightdm/lightdm-gtk-greeter.conf" "/etc/lightdm/"
 
