@@ -104,7 +104,7 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 set Master 1+ unmute")),   # Sound
     # Screenshot
     Key([mod], "s", lazy.spawn("scrot '%Y-%m-%d-%T_$wx$h.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots/'")),
-    Key([mod], "b", lazy.spawn("firefox")),
+    Key([mod], "b", lazy.spawn("zen-browser")),
     Key([mod], "e", lazy.spawn("kitty yazi"))
 ]
 
