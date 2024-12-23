@@ -40,7 +40,7 @@ install_yay_packages() {
 install_pacman_packages alsa-utils discord git gtk3 kitty libnotify lxappearance neofetch neovim notification-daemon obsidian pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol
 install_pacman_packages python-psutil rofi scrot tree ttf-jetbrains-mono-nerd unzip xclip xorg-server-xephyr yazi udiskie ntfs-3g network-manager-applet
 
-install_yay_packages spotify brave-bin
+install_yay_packages spotify zen-browser-bin
 
 
 # Set up dotfiles
